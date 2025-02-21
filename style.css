@@ -1,0 +1,106 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  list-style: none;
+}
+
+body{
+  margin: 100px;
+  text-align: center;
+  background-color: #e6d3bf;
+}
+#calendar{
+  border-radius: 10px;
+  max-width: 650px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row-reverse;
+}
+#cal{
+  width: 80%;
+  padding: 15px;
+  background-color: #82a4bf;
+}
+#month-name{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#month-list{
+  padding: 15px;
+  width:20%;
+  background-color: #436e8f;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  a{
+    line-height: 30px;
+    color: #f3efea;
+    &:hover{text-decoration: underline;}
+  }
+}
+button{
+  width: 50px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 0;
+  background-color: #f3efea;
+}
+h1{
+  font-style: italic;
+  color: #f3efea;
+}
+h5{
+  color: #436e8f;
+}
+#week{
+  padding: 20px ;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #ccc;
+  gap: 10px;
+}
+span{
+  text-decoration: underline;
+  color: #f3efea;
+}
+#dates{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  padding: 20px 10px;
+  div {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3efea;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #395e7b;
+    transition: 0.3s;
+  }
+}
+
+@media only screen and (max-width:768px){
+
+  #calendar{
+    flex-direction: column-reverse;
+  }
+  #month-list{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+    width: 100%;
+  }
+  #cal{width: 100%;}
+}

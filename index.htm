@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="calendar">
+      <div id="cal">
+        <div id="month-name">
+          <button onclick="prev()"><i class="fa-solid fa-chevron-left"></i></button>
+          <div>
+            <h1 id="header"></h1>
+            <span id="curDay"></span>
+          </div>
+          <button onclick="next()"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+        <div>
+          <div id="week">
+            <h5>Sun</h5>
+            <h5>Mon</h5>
+            <h5>Tue</h5>
+            <h5>Wed</h5>
+            <h5>Thu</h5>
+            <h5>Fri</h5>
+            <h5>Sat</h5>
+          </div>
+          <div id="dates">
+
+          </div>
+        </div>
+      </div>
+  
+      <div id="month-list">
+        <a onclick="pickMonth(0)" href="#">January</a>
+        <a onclick="pickMonth(1)" href="#">February</a>
+        <a onclick="pickMonth(2)" href="#">March</a>
+        <a onclick="pickMonth(3)" href="#">April</a>
+        <a onclick="pickMonth(4)" href="#">May</a>
+        <a onclick="pickMonth(5)" href="#">June</a>
+        <a onclick="pickMonth(6)" href="#">July</a>
+        <a onclick="pickMonth(7)" href="#">August</a>
+        <a onclick="pickMonth(8)" href="#">September</a>
+        <a onclick="pickMonth(9)" href="#">October</a>
+        <a onclick="pickMonth(10)" href="#">November</a>
+        <a onclick="pickMonth(11)" href="#">December</a>
+      </div>
+    </div>
+
+
+    <script>
+      const header = document.getElementById('header');
+      const dates = document.getElementById('dates');
+      const monthlist = document.getElementById('month-list');
+      const curDay = document.getElementById('curDay');
+      const months = ["January", "February", "March", "April", "May", "June","July",
+                       "August", "September", "October", "November", "December"];
+      const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]; 
+
+      let time = new Date();
+
+      function currentDate() {
+        let month = months[time.getMonth()];
+        let year = time.getFullYear();
+        let day = weekdays[time.getDay()];
+
+        header.innerHTML = month + " " + year
+        curDay.innerHTML = day + ", " + "1 " + month + " " + year
+
+        yaratgunleri()
+      }
+      currentDate()
+
+      
+      function prev() {
+        time.setMonth(time.getMonth() - 1);
+        currentDate();
+      }
+
+      function next() {
+        time.setMonth(time.getMonth() + 1);
+        currentDate();
+      }
+
+      function yaratgunleri() {
+        dates.innerHTML = '';
+
+        let days = new Date(time.getFullYear(), time.getMonth() + 1, 0).getDate()
+        let qalan = new Date(time.getFullYear(), time.getMonth(), 1).getDay()
+
+        for (let i = 0; i < qalan; i++) {
+          dates.innerHTML += '<div></div>'
+        }
+
+          for (let i = 1; i <= days; i++) {
+            dates.innerHTML += `<div>${i}</div>` 
+        }
+      }
+      yaratgunleri()
+      
+      function pickMonth(index) {
+        time.setMonth(index);
+        currentDate()
+      }
+    </script>
+</body>
+</html>
